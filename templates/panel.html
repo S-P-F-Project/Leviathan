@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_title }} — {{ site_name }}{% endblock %}
+{% block description %}{{ page_description }}{% endblock %}
+
+{% block content %}
+<section class="inner-page inner-page-panel" aria-labelledby="panel-title">
+    <p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span> SPF / ЛИЧНЫЙ КАБИНЕТ</p>
+    <h1 id="panel-title">{{ page_title }}<span class="accent">.</span></h1>
+    <p class="inner-intro">{{ page_description }}</p>
+    <div class="work-in-progress">
+        <span class="work-in-progress-label">В РАЗРАБОТКЕ</span>
+        <p>Раздел ещё готовится. Пока можно вернуться на главную или открыть вики проекта.</p>
+        <div class="work-in-progress-actions">
+            <a class="button button-primary" href="{{ request.url_for('index_page') }}">На главную <span aria-hidden="true">↗</span></a>
+            <a class="button button-secondary" href="{{ wiki_url }}">Перейти в вики <span aria-hidden="true">↗</span></a>
+        </div>
+    </div>
+</section>
+{% endblock %}

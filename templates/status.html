@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Сервисы — {{ site_name }}{% endblock %}
+{% block description %}Компоненты инфраструктуры {{ site_name }} и ссылки на них.{% endblock %}
+
+{% block content %}
+<section class="inner-page" aria-labelledby="services-title">
+    <p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span> ИНФРАСТРУКТУРА</p>
+    <h1 id="services-title">Сервисы проекта<span class="accent">.</span></h1>
+    <p class="inner-intro">Основные компоненты SPF и ссылки на них. Доступность сервисов пока автоматически не проверяется.</p>
+    {% include "service_list.html" %}
+</section>
+{% endblock %}

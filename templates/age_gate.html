@@ -1,0 +1,19 @@
+<dialog class="age-gate" id="age-gate" aria-labelledby="age-gate-title"
+        aria-describedby="age-gate-description" data-age-limit="{{ age_limit }}"
+        data-cookie-name="{{ age_cookie_name }}">
+    <div class="age-gate-header">
+        <span class="age-gate-brand">{{ site_name }}</span>
+        <span class="age-gate-label" aria-label="Возрастное ограничение {{ age_limit }} плюс">{{ age_limit }}+</span>
+    </div>
+    <h2 id="age-gate-title" tabindex="-1">Только для совершеннолетних</h2>
+    <p id="age-gate-description">SPF — ролевой проект для взрослой аудитории. В игре и отдельных разделах сайта могут встречаться материалы, не предназначенные для несовершеннолетних.</p>
+    <p class="age-gate-note">Для продолжения подтвердите, что вам исполнилось {{ age_limit }} лет.</p>
+    <div class="age-gate-actions">
+        <button type="button" class="age-gate-primary" id="age-gate-confirm">Подтверждаю, мне есть {{ age_limit }} лет <span aria-hidden="true">↗</span></button>
+        <button type="button" class="age-gate-secondary" id="age-gate-leave">Покинуть сайт</button>
+    </div>
+    <p class="age-gate-error" id="age-gate-error" role="alert" hidden>Не удалось сохранить подтверждение. Разрешите cookie для сайта и попробуйте ещё раз.</p>
+</dialog>
+<noscript>
+    <div class="age-gate-noscript">Для подтверждения возраста {{ age_limit }}+ требуется JavaScript.</div>
+</noscript>
