@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="65 40 330 255" width="330" height="255">
+    <defs>
+        <linearGradient id="globe-gold" x1="230" y1="102.5" x2="230" y2="233.5" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#dd8100" />
+            <stop offset="1" stop-color="#d77a0a" />
+        </linearGradient>
+        <mask id="shield-cutouts" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" x="138" y="79" width="184" height="197" style="mask-type:luminance">
+            <rect x="138" y="79" width="184" height="197" fill="#fff" />
+            <g id="globe-cutouts" stroke="#000" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                <ellipse cx="230" cy="168" rx="67" ry="65.5" fill="none" />
+                <path fill="none" d="M230 102.5C199 113 185 139 185 168S199 223 230 233.5M230 102.5C213 112 207 139 207 168S213 224 230 233.5M230 102.5C247 112 253 139 253 168S247 224 230 233.5M230 102.5C261 113 275 139 275 168S261 223 230 233.5" />
+                <path fill="none" d="M180.5 123.9C204 146 256 146 279.5 123.9M180.5 212.1C204 188 256 188 279.5 212.1" />
+            </g>
+            <g id="shield-seam-cutouts" fill="none" stroke="#000" stroke-linecap="round">
+                <path stroke-width="3.5" d="M142 167.5H318" />
+                <path stroke-width="4" d="M230 84V257.5" />
+            </g>
+            <g id="rivet-cutouts" fill="#000">
+                <circle cx="157" cy="104.5" r="5.8" />
+                <circle cx="303" cy="104.5" r="5.8" />
+            </g>
+        </mask>
+    </defs>
+    <g id="shield" mask="url(#shield-cutouts)">
+        <path fill="#bc2020" d="M141 82H319V160C316 208 280 247 230 273C180 247 144 208 141 160Z" />
+        <g id="golden-beads" fill="#d8871c">
+            <circle cx="306.71" cy="173.51" r="2.45" />
+            <circle cx="305.83" cy="179.97" r="2.45" />
+            <circle cx="304.38" cy="186.33" r="2.45" />
+            <circle cx="302.36" cy="192.55" r="2.45" />
+            <circle cx="299.79" cy="198.57" r="2.45" />
+            <circle cx="296.68" cy="204.35" r="2.45" />
+            <circle cx="293.07" cy="209.85" r="2.45" />
+            <circle cx="288.99" cy="215.02" r="2.45" />
+            <circle cx="284.45" cy="219.82" r="2.45" />
+            <circle cx="279.49" cy="224.22" r="2.45" />
+            <circle cx="274.17" cy="228.19" r="2.45" />
+            <circle cx="268.50" cy="231.69" r="2.45" />
+            <circle cx="262.54" cy="234.70" r="2.45" />
+            <circle cx="256.34" cy="237.20" r="2.45" />
+            <circle cx="249.93" cy="239.15" r="2.45" />
+            <circle cx="243.37" cy="240.57" r="2.45" />
+            <circle cx="236.71" cy="241.42" r="2.45" />
+            <circle cx="223.29" cy="241.42" r="2.45" />
+            <circle cx="216.63" cy="240.57" r="2.45" />
+            <circle cx="210.07" cy="239.15" r="2.45" />
+            <circle cx="203.66" cy="237.20" r="2.45" />
+            <circle cx="197.46" cy="234.70" r="2.45" />
+            <circle cx="191.50" cy="231.69" r="2.45" />
+            <circle cx="185.83" cy="228.19" r="2.45" />
+            <circle cx="180.51" cy="224.22" r="2.45" />
+            <circle cx="175.55" cy="219.82" r="2.45" />
+            <circle cx="171.01" cy="215.02" r="2.45" />
+            <circle cx="166.93" cy="209.85" r="2.45" />
+            <circle cx="163.32" cy="204.35" r="2.45" />
+            <circle cx="160.21" cy="198.57" r="2.45" />
+            <circle cx="157.64" cy="192.55" r="2.45" />
+            <circle cx="155.62" cy="186.33" r="2.45" />
+            <circle cx="154.17" cy="179.97" r="2.45" />
+            <circle cx="153.29" cy="173.51" r="2.45" />
+            <circle cx="153.29" cy="160.49" r="2.45" />
+            <circle cx="154.17" cy="154.03" r="2.45" />
+            <circle cx="155.62" cy="147.67" r="2.45" />
+            <circle cx="157.64" cy="141.45" r="2.45" />
+            <circle cx="160.21" cy="135.43" r="2.45" />
+            <circle cx="163.32" cy="129.65" r="2.45" />
+            <circle cx="166.93" cy="124.15" r="2.45" />
+            <circle cx="171.01" cy="118.98" r="2.45" />
+            <circle cx="175.55" cy="114.18" r="2.45" />
+            <circle cx="180.51" cy="109.78" r="2.45" />
+            <circle cx="185.83" cy="105.81" r="2.45" />
+            <circle cx="191.50" cy="102.31" r="2.45" />
+            <circle cx="197.46" cy="99.30" r="2.45" />
+            <circle cx="203.66" cy="96.80" r="2.45" />
+            <circle cx="210.07" cy="94.85" r="2.45" />
+            <circle cx="216.63" cy="93.43" r="2.45" />
+            <circle cx="223.29" cy="92.58" r="2.45" />
+            <circle cx="236.71" cy="92.58" r="2.45" />
+            <circle cx="243.37" cy="93.43" r="2.45" />
+            <circle cx="249.93" cy="94.85" r="2.45" />
+            <circle cx="256.34" cy="96.80" r="2.45" />
+            <circle cx="262.54" cy="99.30" r="2.45" />
+            <circle cx="268.50" cy="102.31" r="2.45" />
+            <circle cx="274.17" cy="105.81" r="2.45" />
+            <circle cx="279.49" cy="109.78" r="2.45" />
+            <circle cx="284.45" cy="114.18" r="2.45" />
+            <circle cx="288.99" cy="118.98" r="2.45" />
+            <circle cx="293.07" cy="124.15" r="2.45" />
+            <circle cx="296.68" cy="129.65" r="2.45" />
+            <circle cx="299.79" cy="135.43" r="2.45" />
+            <circle cx="302.36" cy="141.45" r="2.45" />
+            <circle cx="304.38" cy="147.67" r="2.45" />
+            <circle cx="305.83" cy="154.03" r="2.45" />
+            <circle cx="306.71" cy="160.49" r="2.45" />
+        </g>
+        <ellipse cx="230" cy="168" rx="67" ry="65.5" fill="url(#globe-gold)" id="globe" />
+    </g>
+    <g id="laurel-branches" fill="#232321">
+        <g id="laurel-left">
+            <path id="laurel-stem" fill="none" stroke="#232321" stroke-width="3.4" stroke-linecap="round" d="M113 99C95 123 88 154 102 185 116 216 173 283 230 283" />
+            <path id="laurel-leaf-crown" d="M108.826 105C110 91 119 76 128 72 129 84 120 99 108.826 105Z" />
+            <path id="laurel-leaf-upper-outside" d="M95.267 141C88 132 83 111 88 99 98 111 99 126 95.267 141Z" />
+            <path id="laurel-leaf-upper-inside" d="M95.724 138C102 124 115 108 128 105 126 118 113 132 95.724 138Z" />
+            <path id="laurel-leaf-outside-2" d="M95.444 163C85 159 73 145 70 132 84 135 97 148 95.444 163Z" />
+            <path id="laurel-leaf-inside-2" d="M95.6 164C101 150 111 137 121 133 123 147 111 158 95.6 164Z" />
+            <path id="laurel-leaf-outside-3" d="M107.282 195C95 191 82 183 77 169 92 171 108 181 107.282 195Z" />
+            <path id="laurel-leaf-inside-3" d="M106.695 194C106 179 113 166 120 161 125 173 118 186 106.695 194Z" />
+            <path id="laurel-leaf-outside-4" d="M126.863 222C111 225 90 215 80 205 98 203 119 210 126.863 222Z" />
+            <path id="laurel-leaf-inside-4" d="M125.183 220C118 210 122 194 130 185 137 198 134 210 125.183 220Z" />
+            <path id="laurel-leaf-outside-5" d="M151.431 247C132 253 109 248 98 237 116 232 141 237 151.431 247Z" />
+            <path id="laurel-leaf-inside-5" d="M144.845 241C135 234 134 217 139 205 150 217 153 230 144.845 241Z" />
+            <path id="laurel-leaf-outside-6" d="M194.279 275C162 281 138 277 124 268 143 263 166 266 194.279 275Z" />
+            <path id="laurel-leaf-inside-6" d="M175.413 265C160 260 151 245 153 229 165 238 174 252 175.413 265Z" />
+            <path id="laurel-leaf-lower" d="M212.523 281C191 290 171 294 158 290 170 282 187 278 212.523 281Z" />
+        </g>
+        <use href="#laurel-left" transform="translate(460 0) scale(-1 1)" />
+    </g>
+    <g id="stars" fill="#232321">
+        <path id="star-left" d="M206.000 61.500L207.908 67.373L214.084 67.373L209.088 71.003L210.996 76.877L206.000 73.247L201.004 76.877L202.912 71.003L197.916 67.373L204.092 67.373Z" />
+        <path id="star-crown" d="M230.000 44.000L233.592 55.056L245.217 55.056L235.812 61.889L239.405 72.944L230.000 66.111L220.595 72.944L224.188 61.889L214.783 55.056L226.408 55.056Z" />
+        <path id="star-right" d="M254.000 61.500L255.908 67.373L262.084 67.373L257.088 71.003L258.996 76.877L254.000 73.247L249.004 76.877L250.912 71.003L245.916 67.373L252.092 67.373Z" />
+    </g>
+    <g id="rivet-centres" fill="#232321">
+        <circle cx="157" cy="104.5" r="2.35" />
+        <circle cx="303" cy="104.5" r="2.35" />
+    </g>
+</svg>

@@ -3,28 +3,13 @@ from pathlib import Path
 
 from fastapi.templating import Jinja2Templates
 
-from config import (
-    ABOUT_TEXT,
-    OFFER_URL,
-    PLAYER_URL,
-    RULES_URL,
-    SELLER,
-    SHOP_URL,
-    SITE_NAME,
-    WIKI_URL,
-)
+from config import ABOUT_TEXT, SELLER
 
 BASE_DIR = Path(__file__).resolve().parent
 STATIC_DIR = BASE_DIR / "static"
 
 templates = Jinja2Templates(directory=str(BASE_DIR / "templates"))
 templates.env.globals.update(
-    site_name=SITE_NAME,
-    shop_url=SHOP_URL,
-    player_url=PLAYER_URL,
-    wiki_url=WIKI_URL,
-    offer_url=OFFER_URL,
-    rules_url=RULES_URL,
     about_text=ABOUT_TEXT,
     seller=SELLER,
 )
