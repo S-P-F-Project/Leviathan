@@ -1,59 +1,19 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="ru">
 
-{% block content %}
-<section class="home-hero" aria-labelledby="home-title">
-    <div class="hero-copy">
-        <p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span> РОЛЕВОЙ ПРОЕКТ <span class="eyebrow-dot" aria-hidden="true">·</span> {{ age_limit }}+</p>
-        <h1 id="home-title">Мир. Персонажи.<br><em>Истории.</em></h1>
-        <p class="hero-description">{{ site_description }}</p>
-        <div class="hero-actions">
-            <a class="button button-primary" href="{{ request.url_for('player_page') }}">Панель игрока <span aria-hidden="true">↗</span></a>
-            <a class="button button-secondary" href="{{ wiki_url }}">Исследовать мир <span aria-hidden="true">↗</span></a>
-        </div>
-    </div>
-    <div class="hero-art" aria-hidden="true">
-        <div class="art-orbit art-orbit-outer"></div>
-        <div class="art-orbit art-orbit-inner"></div>
-        <div class="art-axis"></div>
-        <span class="art-word">SPF</span>
-        <span class="art-top">WORLD / CHARACTER / STORY</span>
-        <span class="art-bottom">YOUR STORY STARTS HERE <span>↗</span></span>
-    </div>
-</section>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
+    <title>spf-project</title>
+    <link rel="stylesheet" href="{{ 'css/base.css' | ver }}">
+</head>
 
-<section class="home-explore" aria-labelledby="explore-title">
-    <div class="section-heading">
-        <div>
-            <span class="section-kicker">НАВИГАЦИЯ</span>
-            <h2 id="explore-title">Куда дальше?</h2>
-        </div>
-        <p>Основные разделы проекта — без лишних переходов.</p>
-    </div>
-    <div class="destination-grid">
-        <a class="destination" href="{{ request.url_for('player_page') }}">
-            <span class="destination-number">01 / ИГРОКАМ</span>
-            <div>
-                <h3>Личный кабинет</h3>
-                <p>Точка входа в панель игрока.</p>
-            </div>
-            <span class="destination-arrow" aria-hidden="true">↗</span>
-        </a>
-        <a class="destination" href="{{ wiki_url }}">
-            <span class="destination-number">02 / МИР SPF</span>
-            <div>
-                <h3>Вики проекта</h3>
-                <p>Мир, история и информация о проекте.</p>
-            </div>
-            <span class="destination-arrow" aria-hidden="true">↗</span>
-        </a>
-        <a class="destination" href="{{ request.url_for('status_page') }}">
-            <span class="destination-number">03 / ПЛАТФОРМА</span>
-            <div>
-                <h3>Сервисы</h3>
-                <p>Компоненты инфраструктуры и их адреса.</p>
-            </div>
-            <span class="destination-arrow" aria-hidden="true">↗</span>
-        </a>
-    </div>
-</section>
-{% endblock %}
+<body>
+    <main class="page">
+        <h1>spf-project</h1>
+        <p>Сайт в разработке.</p>
+    </main>
+</body>
+
+</html>
