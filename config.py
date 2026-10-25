@@ -37,8 +37,8 @@ class ServiceEnum(IntEnum):
 
 @dataclass
 class Service:
-    name: str 
-    
+    name: str
+
     url: str
 
     is_public: bool
@@ -55,5 +55,12 @@ DICT_OF_SERVICES = {
         True,
         str(SOCKET_DIR / "wiki.sock"),
         "/wiki",
+    ),
+    "/database": Service(
+        "Датабаза",
+        "https://github.com/S-P-F-Project/database.git",
+        False,
+        str(SOCKET_DIR / "database.sock"),
+        "/database",
     ),
 }
