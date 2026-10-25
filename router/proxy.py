@@ -1,5 +1,4 @@
-from collections.abc import AsyncGenerator
-from contextlib import AsyncExitStack, asynccontextmanager
+from contextlib import AsyncExitStack
 from http.cookiejar import CookieJar, DefaultCookiePolicy
 from urllib.parse import quote
 
@@ -9,13 +8,9 @@ from fastapi import APIRouter, FastAPI, Request
 from starlette.responses import PlainTextResponse, Response, StreamingResponse
 from starlette.types import Receive, Scope, Send
 
-router = APIRouter()
+from config import DICT_OF_SERVICES
 
-ROUTES = {
-    "/auth": "/run/spf/auth.sock",
-    "/shop": "/run/spf/shop.sock",
-    "/wiki": "/run/spf/wiki.sock",
-}
+router = APIRouter()
 
 METHODS = ["GET", "POST", "HEAD", "OPTIONS"]
 
@@ -40,23 +35,21 @@ class NoStoredCookies(DefaultCookiePolicy):
         return False
 
 
-@asynccontextmanager
-async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
-    async with AsyncExitStack() as stack:
-        clients: dict[str, httpx.AsyncClient] = {}
+async def init_proxy(app: FastAPI, stack: AsyncExitStack) -> None:
+    clients: dict[str, httpx.AsyncClient] = {}
 
-        for prefix, socket in ROUTES.items():
-            client = httpx.AsyncClient(
-                transport=httpx.AsyncHTTPTransport(uds=socket, limits=LIMITS),
-                timeout=TIMEOUT,
-                follow_redirects=False,
-                trust_env=False,
-                cookies=CookieJar(policy=NoStoredCookies()),
-            )
-            clients[prefix] = await stack.enter_async_context(client)
+    for name, service in DICT_OF_SERVICES.items():
+        client = httpx.AsyncClient(
+            transport=httpx.AsyncHTTPTransport(uds=service.socket, limits=LIMITS),
+            timeout=TIMEOUT,
+            follow_redirects=False,
+            trust_env=False,
+            cookies=CookieJar(policy=NoStoredCookies()),
+        )
 
-        app.state.proxy_clients = clients
-        yield
+        clients[name] = await stack.enter_async_context(client)
+
+    app.state.proxy_clients = clients
 
 
 def filter_headers(headers: list[tuple[bytes, bytes]]) -> list[tuple[bytes, bytes]]:
@@ -80,19 +73,16 @@ def get_raw_path(request: Request) -> bytes:
     return quote(request.scope["path"], safe="/:@!$&'()*+,;=-._~").encode("ascii")
 
 
-def find_route(path: bytes) -> str | None:
-    for prefix in ROUTES:
-        key = prefix.encode("ascii")
-        if path == key or path.startswith(key + b"/"):
-            return prefix
-
-    return None
+def find_route(path: str) -> str:
+    return "/" + path.lstrip("/").split("/", 1)[0]
 
 
 class ProxyResponse(StreamingResponse):
     def __init__(self, upstream: httpx.Response) -> None:
         self.upstream = upstream
+
         super().__init__(upstream.aiter_raw(), status_code=upstream.status_code)
+
         self.raw_headers = filter_headers(upstream.headers.raw)
 
     async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
@@ -107,10 +97,15 @@ class ProxyResponse(StreamingResponse):
 @router.api_route("/{path:path}", methods=METHODS)
 async def proxy(request: Request) -> Response:
     path = get_raw_path(request)
-    prefix = find_route(path)
+    prefix = find_route(request.scope["path"])
 
-    if prefix is None:
+    service = DICT_OF_SERVICES.get(prefix)
+
+    if service is None or not service.is_public:
         return PlainTextResponse("Not Found", status_code=404)
+
+    if service.status > 0:
+        return PlainTextResponse("Service Unavailable", status_code=503)
 
     query = request.scope.get("query_string", b"")
     target = path + b"?" + query if query else path

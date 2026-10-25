@@ -1,20 +1,6 @@
-import os
-from pathlib import Path
-
 from fastapi.templating import Jinja2Templates
 
-from config import ABOUT_TEXT, SELLER
-
-BASE_DIR = Path(__file__).resolve().parent
-STATIC_DIR = BASE_DIR / "static"
-
-templates = Jinja2Templates(directory=str(BASE_DIR / "templates"))
-templates.env.globals.update(
-    about_text=ABOUT_TEXT,
-    seller=SELLER,
-)
-
-LOCAL_RUN = os.getenv("FASTAPISTATIC") == "1"
+from config import ABOUT_TEXT, BASE_DIR, LOCAL_RUN, SELLER, STATIC_DIR
 
 
 def static_url(file: str) -> str:
@@ -27,4 +13,8 @@ def static_url(file: str) -> str:
     return f"/leviathan/static/{file}?v={v}"
 
 
+templates = Jinja2Templates(directory=str(BASE_DIR / "templates"))
+
 templates.env.filters["ver"] = static_url
+
+templates.env.globals.update(about_text=ABOUT_TEXT, seller=SELLER)
