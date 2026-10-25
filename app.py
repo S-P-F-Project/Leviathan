@@ -1,4 +1,5 @@
 import asyncio
+import logging
 from collections.abc import AsyncGenerator
 from contextlib import AsyncExitStack, asynccontextmanager, suppress
 
@@ -14,36 +15,50 @@ from service.ping import heartbeat
 from service.systemd import start_all_services, stop_all_services
 from template_env import LOCAL_RUN
 
+logger = logging.getLogger("uvicorn.error")
+
+
+async def prepare_services() -> None:
+    try:
+        logger.info("Stopping existing services")
+        await stop_all_services()
+
+        logger.info("Deploying services")
+        await deploy_all_services()
+
+        logger.info("Starting services")
+        await start_all_services()
+
+        logger.info("Service initialization completed")
+
+    except asyncio.CancelledError:
+        raise
+
+    except Exception:
+        logger.exception("Service initialization failed")
+        raise
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     async with AsyncExitStack() as stack:
-        # боже прости меня но мне прийдётся включить режим gpt иначе через месяц я забуду что за хуйня
-
-        # Сетапим stop_all_services. Добавляем его в выход стака и за одно
-        # убивает все сервисы если кто-то ещё жив как-то.
         stack.push_async_callback(stop_all_services)
-        await stop_all_services()
 
-        # Деплоим все сервисы
-        await deploy_all_services()
-
-        # Стартуем systemd
-        await start_all_services()
-
-        # Поднимаем клиенты
         await init_proxy(app, stack)
 
-        # Поднимаем проверку сервисов. Без клиентов эта хуйня грохнется.
-        task = asyncio.create_task(heartbeat(app))
+        deploy_task = asyncio.create_task(prepare_services())
+        heartbeat_task = asyncio.create_task(heartbeat(app))
 
         try:
             yield
 
         finally:
-            task.cancel()
-            with suppress(asyncio.CancelledError):
-                await task
+            heartbeat_task.cancel()
+            deploy_task.cancel()
+
+            for task in (heartbeat_task, deploy_task):
+                with suppress(asyncio.CancelledError):
+                    await task
 
 
 app = FastAPI(
