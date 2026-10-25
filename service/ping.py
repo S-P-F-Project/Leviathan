@@ -18,7 +18,7 @@ async def ping(prefix: str, client: httpx.AsyncClient) -> None:
 
     service = DICT_OF_SERVICES[prefix]
 
-    if service.status < ServiceEnum.maintenance:
+    if service.status <= ServiceEnum.dead:
         service.status = status
 
 
@@ -29,7 +29,7 @@ async def ping_all(app: FastAPI) -> None:
         *(
             ping(prefix, client)
             for prefix, client in clients.items()
-            if DICT_OF_SERVICES[prefix].status < ServiceEnum.maintenance
+            if DICT_OF_SERVICES[prefix].status <= ServiceEnum.dead
         )
     )
 
