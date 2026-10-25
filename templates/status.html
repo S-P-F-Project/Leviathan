@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Состояние сервисов - S. P. F. Project{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ 'css/status.css' | ver }}">
+{% endblock %}
+
+{% block head_extra %}
+<meta http-equiv="refresh" content="10">
+{% endblock %}
+
+{% block main_class %}status-main{% endblock %}
+
+{% block content %}
+<section class="status-overview" aria-labelledby="status-title">
+    <div class="status-intro">
+        <h1 id="status-title">Состояние сервисов</h1>
+        <p>Данные обновляются автоматически каждые 10 секунд.</p>
+    </div>
+
+    <div class="status-summary">
+        <div class="status-summary-label">Общее состояние</div>
+
+        {% if services and healthy_count == services | length %}
+        <div class="status-summary-value summary-healthy">
+            <span class="status-indicator" aria-hidden="true"></span>
+            Все сервисы работают
+        </div>
+        {% else %}
+        <div class="status-summary-value summary-degraded">
+            <span class="status-indicator" aria-hidden="true"></span>
+            Не все сервисы работают
+        </div>
+        {% endif %}
+
+        <div class="status-summary-count">
+            Работают {{ healthy_count }} из {{ services | length }}
+        </div>
+    </div>
+</section>
+
+<section class="status-section" aria-labelledby="services-title">
+    <div class="status-section-header">
+        <h2 id="services-title">Сервисы проекта</h2>
+        <span>{{ services | length }} всего</span>
+    </div>
+
+    <ul class="service-list">
+        {% for service in services %}
+        <li class="service-card service-{{ service.state }}">
+            <div class="service-info">
+                <span class="service-indicator" aria-hidden="true"></span>
+
+                <div class="service-details">
+                    <span class="service-name">{{ service.name }}</span>
+                </div>
+            </div>
+
+            <span class="service-state">{{ service.label }}</span>
+        </li>
+        {% else %}
+        <li class="service-empty">
+            Сервисы пока не зарегистрированы.
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}

@@ -24,7 +24,6 @@ SELLER = {
     "full_name": "stub",
     "inn": "stub",
     "email": "stub",
-    "phone": "+ stub",
 }
 
 
@@ -38,6 +37,8 @@ class ServiceEnum(IntEnum):
 
 @dataclass
 class Service:
+    name: str 
+    
     url: str
 
     is_public: bool
@@ -49,6 +50,7 @@ class Service:
 
 DICT_OF_SERVICES = {
     "/wiki": Service(
+        "Википедия",
         "https://github.com/S-P-F-Project/wiki.git",
         True,
         str(SOCKET_DIR / "wiki.sock"),

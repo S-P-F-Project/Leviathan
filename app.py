@@ -8,6 +8,7 @@ from fastapi.staticfiles import StaticFiles
 from router.index import router as index_router
 from router.proxy import init_proxy
 from router.proxy import router as proxy_router
+from router.status import router as status_router
 from service.deploy import deploy_all_services
 from service.ping import heartbeat
 from service.systemd import start_all_services, stop_all_services
@@ -59,5 +60,9 @@ if LOCAL_RUN:
         name="static",
     )
 
-app.include_router(index_router)
-app.include_router(proxy_router)
+for router in [
+    index_router,
+    status_router,
+    proxy_router,
+]:
+    app.include_router(router)
